@@ -19,11 +19,14 @@ function moveBox() {
     blankEl.setAttribute('data-idx', puzzle);
     moveEl.textContent = ++move;
   }
+  if([...document.querySelectorAll('.box')].every((item, index) => parseInt(item.dataset.idx) === index)) {
+    console.log('임시 메시지: 성공!!');
+  };
   return false;
 }
 
 function shuffle() {
-  for(let i = 0; i < COL ** 2; ) {
+  for(let i = 0; i < 50; ) {
     const blank = parseInt(blankEl.dataset.idx);
     const random = Math.floor(Math.random() * 4);
     switch(random) {
