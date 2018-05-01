@@ -23,19 +23,19 @@ function moveBox() {
 }
 
 function shuffle() {
-  for(let i = 0; i < 50; ) {
+  for(let i = 0; i < COL ** 2; ) {
     const blank = parseInt(blankEl.dataset.idx);
     const random = Math.floor(Math.random() * 4);
     switch(random) {
       case 0:
-        if(blank + 1 <= 15) {
+        if(blank + 1 <= 15 && blank % 4 !== 3) {
           document.querySelector(`[data-idx="${blank + 1}"]`).setAttribute('data-idx', blank);
           blankEl.setAttribute('data-idx', blank + 1);
           i++;
         }
         break;
       case 1:
-        if(blank - 1 >= 0)  {
+        if(blank - 1 >= 0 && blank % 4 !== 0)  {
           document.querySelector(`[data-idx="${blank - 1}"]`).setAttribute('data-idx', blank);
           blankEl.setAttribute('data-idx', blank - 1);
           i++;
