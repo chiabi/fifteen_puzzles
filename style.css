@@ -51,60 +51,64 @@ body {
   text-shadow: 0 0 7px #992233;
   box-shadow: 1px 1px 3px #7a9ed3;
   cursor: pointer;
+  transition: all 0.2s;
 }
 .blank {
   background-color: transparent;
 }
 .box[data-idx] {
   position: absolute;
-}
-.box[data-idx='0'],
-.box[data-idx='1'],
-.box[data-idx='2'],
-.box[data-idx='3'] {
   top: 0;
-}
-.box[data-idx='4'],
-.box[data-idx='5'],
-.box[data-idx='6'],
-.box[data-idx='7'] {
-  top: calc(25% + 1px);
-}
-.box[data-idx='8'],
-.box[data-idx='9'],
-.box[data-idx='10'],
-.box[data-idx='11'] {
-  top: calc(50% + 2px);
-}
-.box[data-idx='12'],
-.box[data-idx='13'],
-.box[data-idx='14'],
-.box[data-idx='15'] {
-  top: calc(75% + 3px);
-}
-.box[data-idx='0'],
-.box[data-idx='4'],
-.box[data-idx='8'],
-.box[data-idx='12'] {
   left: 0;
+  transform-origin: 0 0;
 }
-.box[data-idx='1'],
-.box[data-idx='5'],
-.box[data-idx='9'],
+.box[data-idx='0'] {
+  transform: translate(0, 0)
+}
+.box[data-idx='1'] {
+  transform: translate(calc(100% + 4px), 0)
+}
+.box[data-idx='2'] {
+  transform: translate(calc(200% + 8px), 0)
+}
+.box[data-idx='3'] {
+  transform: translate(calc(300% + 12px), 0)
+}
+.box[data-idx='4'] {
+  transform: translate(0, calc(100% + 4px))
+}
+.box[data-idx='5'] {
+  transform: translate(calc(100% + 4px), calc(100% + 4px))
+}
+.box[data-idx='6'] {
+  transform: translate(calc(200% + 8px), calc(100% + 4px))
+}
+.box[data-idx='7'] {
+  transform: translate(calc(300% + 12px), calc(100% + 4px))
+}
+.box[data-idx='8'] {
+  transform: translate(0, calc(200% + 8px))
+}
+.box[data-idx='9'] {
+  transform: translate(calc(100% + 4px), calc(200% + 8px))
+}
+.box[data-idx='10'] {
+  transform: translate(calc(200% + 8px), calc(200% + 8px))
+}
+.box[data-idx='11'] {
+  transform: translate(calc(300% + 12px), calc(200% + 8px))
+}
+.box[data-idx='12'] {
+  transform: translate(0, calc(300% + 12px))
+}
 .box[data-idx='13'] {
-  left: calc(25% + 1px);
+  transform: translate(calc(100% + 4px), calc(300% + 12px))
 }
-.box[data-idx='2'],
-.box[data-idx='6'],
-.box[data-idx='10'],
 .box[data-idx='14'] {
-  left: calc(50% + 2px);
+  transform: translate(calc(200% + 8px), calc(300% + 12px))
 }
-.box[data-idx='3'],
-.box[data-idx='7'],
-.box[data-idx='11'],
 .box[data-idx='15'] {
-  left: calc(75% + 3px);
+  transform: translate(calc(300% + 12px), calc(300% + 12px))
 }
 .move-wrap {
   margin: 1.5em 0;
@@ -120,12 +124,13 @@ body {
   padding: 0.5em 0.8em;
   font-size: 1.2em;
   background-color: transparent;
+  cursor: pointer;
+}
+.btn-shuffle {
+  border: 2px solid #99bbef;
+  color: #99bbef;
 }
 .btn-reset {
   border: 2px solid #ef8899;
   color: #ef8899;
-}
-.btn-scramble {
-  border: 2px solid #99bbef;
-  color: #99bbef;
 }
