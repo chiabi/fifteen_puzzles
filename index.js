@@ -15,6 +15,9 @@ function moveBox() {
   const puzzle = this.dataset.idx;
   const blank = blankEl.dataset.idx;
   if (Math.abs(blank - puzzle) === 1 || Math.abs(blank - puzzle) === 4) {
+    if (blank % 4 === 0 && puzzle % 4 === 3 || blank % 4 === 3 && puzzle % 4 === 0) {
+      return false;
+    }
     this.setAttribute('data-idx', blank);
     blankEl.setAttribute('data-idx', puzzle);
     moveEl.textContent = ++move;

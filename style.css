@@ -50,6 +50,7 @@ body {
   color: white;
   text-shadow: 0 0 7px #992233;
   box-shadow: 1px 1px 3px #7a9ed3;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
 }
