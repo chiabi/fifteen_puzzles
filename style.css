@@ -129,9 +129,51 @@ body {
 }
 .btn-shuffle {
   border: 2px solid #99bbef;
+  border-right-color: #5996f0;
+  border-bottom-color: #5996f0;
   color: #99bbef;
 }
 .btn-reset {
   border: 2px solid #ef8899;
+  border-right-color: #e7526b;
+  border-bottom-color: #e7526b;
   color: #ef8899;
+}
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #333;
+  background-image: 
+  radial-gradient(ellipse at 0% 0%, #ef8899, #ef8899 40%, transparent 40%),
+  radial-gradient(ellipse at 100% 100%, #99bbef, #99bbef 40%, transparent 40%);
+  transform: scale(0);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.end .modal{
+  opacity: 1;
+  transform: scale(1);
+}
+.modal h2 {
+  color: #fff;
+  margin: 0 0 0.2em;
+  font-size: 4em;
+  text-shadow: 7px 5px 2px #ef8899, -7px -5px 2px #99bbef;
+}
+.btn-again {
+  border: 2px solid #e8eb6c;
+  border-right-color: #f5b400;
+  border-bottom-color: #f5b400;
+  color: #e8eb6c;
+}
+@media all and (max-width: 768px) {
+  .modal h2 {
+    font-size: 2em;
+  }
 }

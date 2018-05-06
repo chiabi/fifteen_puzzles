@@ -1,8 +1,9 @@
 const COL = 4;
 let move = 0;
 
-const moveEl = document.querySelector('.move');
+const body = document.body;
 const blankEl = document.querySelector('.blank');
+const moveEl = document.querySelector('.game .move');
 
 function init() {
   document.querySelectorAll('.box').forEach((item, index) => {
@@ -12,20 +13,45 @@ function init() {
 }
 
 function moveBox() {
-  const puzzle = this.dataset.idx;
-  const blank = blankEl.dataset.idx;
-  if (Math.abs(blank - puzzle) === 1 || Math.abs(blank - puzzle) === 4) {
-    if (blank % 4 === 0 && puzzle % 4 === 3 || blank % 4 === 3 && puzzle % 4 === 0) {
-      return false;
+  const puzzle = parseInt(this.dataset.idx);
+  const blank = parseInt(blankEl.dataset.idx);
+  let moveBlock;
+  if ((puzzle % 4 === blank % 4) && puzzle < blank) {
+    moveBlock = moveVeticalElArr(puzzle, blank);
+    moveBlock.map((item, idx, arr) => item.setAttribute('data-idx', idx === arr.length - 1 ? puzzle : parseInt(item.dataset.idx) + 4));
+  } else if ((puzzle % 4 === blank % 4) && puzzle > blank) {
+    moveBlock = moveVeticalElArr(blank, puzzle);
+    moveBlock.map((item, idx) => item.setAttribute('data-idx', idx === 0 ? puzzle : parseInt(item.dataset.idx) - 4));
+  } else if (Math.floor(puzzle / 4) === Math.floor(blank / 4)) {
+    if (puzzle < blank) {
+      moveBlock = moveHorizentalElArr(puzzle, blank);
+      moveBlock.map((item, idx, arr) => item.setAttribute('data-idx', idx === arr.length - 1 ? puzzle : parseInt(item.dataset.idx) + 1));
+    } else {
+      moveBlock = moveHorizentalElArr(blank, puzzle);
+      moveBlock.map((item, idx, arr) => item.setAttribute('data-idx', idx === 0 ? puzzle : parseInt(item.dataset.idx) - 1));
     }
-    this.setAttribute('data-idx', blank);
-    blankEl.setAttribute('data-idx', puzzle);
-    moveEl.textContent = ++move;
   }
+  move += (moveBlock.length - 1);
+  moveEl.textContent = move;
   if([...document.querySelectorAll('.box')].every((item, index) => parseInt(item.dataset.idx) === index)) {
-    console.log('임시 메시지: 성공!!');
+    body.classList.add('end');
+    document.querySelector('.modal .move').textContent = move;
   };
-  return false;
+}
+
+function moveVeticalElArr(a, b) {
+  const arr = [];
+  for (let i = a; i <= b; i++) {
+    if((i % 4) === (b % 4)) arr.push(document.querySelector(`[data-idx="${i}"]`));
+  }
+  return arr;
+}
+function moveHorizentalElArr(a, b) {
+  const arr = [];
+  for (let i = a; i <= b; i++) {
+    arr.push(document.querySelector(`[data-idx="${i}"]`));
+  }
+  return arr;
 }
 
 function shuffle() {
@@ -75,3 +101,9 @@ document.querySelector('.btn-reset').addEventListener('click', init);
 
 // shuffle
 document.querySelector('.btn-shuffle').addEventListener('click', shuffle);
+
+// again
+document.querySelector('.btn-again').addEventListener('click', () => {
+  body.classList.remove('end');
+  init();
+});
