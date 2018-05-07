@@ -5,6 +5,7 @@ const body = document.body;
 const blankEl = document.querySelector('.blank');
 const moveEl = document.querySelector('.game .move');
 
+// 게임 초기화
 function init() {
   document.querySelectorAll('.box').forEach((item, index) => {
     item.setAttribute('data-idx', index);
@@ -12,6 +13,7 @@ function init() {
   });
 }
 
+// 박스를 눌렀을때 옮겨지는 부분 계산하고 화면에 표현하는 함수
 function moveBox() {
   const puzzle = parseInt(this.dataset.idx);
   const blank = parseInt(blankEl.dataset.idx);
